@@ -1,10 +1,11 @@
 class FamilyRecipesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_family_recipe, only: [:show, :edit, :update, :destroy]
 
   # GET /family_recipes
   # GET /family_recipes.json
   def index
-    @family_recipes = FamilyRecipe.all
+    @family_recipes = current_user.family_recipes.sorted
   end
 
   # GET /family_recipes/1
@@ -14,7 +15,7 @@ class FamilyRecipesController < ApplicationController
 
   # GET /family_recipes/new
   def new
-    @family_recipe = FamilyRecipe.new
+    @family_recipe = current_user.family_recipes.build
   end
 
   # GET /family_recipes/1/edit
@@ -24,11 +25,11 @@ class FamilyRecipesController < ApplicationController
   # POST /family_recipes
   # POST /family_recipes.json
   def create
-    @family_recipe = FamilyRecipe.new(family_recipe_params)
+    @family_recipe = current_user.family_recipes.build(family_recipe_params)
 
     respond_to do |format|
       if @family_recipe.save
-        format.html { redirect_to @family_recipe, notice: 'Family recipe was successfully created.' }
+        format.html { redirect_to family_recipes_path, notice: 'Family recipe was successfully created.' }
         format.json { render :show, status: :created, location: @family_recipe }
       else
         format.html { render :new }

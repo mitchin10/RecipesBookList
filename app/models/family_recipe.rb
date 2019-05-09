@@ -1,6 +1,9 @@
 class FamilyRecipe < ApplicationRecord
 
-  scope :search, -> { where{["title LIKE ?", "%#{query}%"]} }
+  belongs_to :user
+
+  scope :search,        -> { where{["title LIKE ?", "%#{query}%"]} }
+  scope :sorted,        -> { order(:category => "ASC") }
 
   validates_presence_of :title
   validates_presence_of :category
