@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Family Recipes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Short description</th>
+      <th>Country</th>
+      <th>Long description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @family_recipes.each do |family_recipe| %>
+      <tr>
+        <td><%= family_recipe.title %></td>
+        <td><%= family_recipe.category %></td>
+        <td><%= family_recipe.short_description %></td>
+        <td><%= family_recipe.country %></td>
+        <td><%= family_recipe.long_description %></td>
+        <td><%= link_to 'Show', family_recipe %></td>
+        <td><%= link_to 'Edit', edit_family_recipe_path(family_recipe) %></td>
+        <td><%= link_to 'Destroy', family_recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Family Recipe', new_family_recipe_path %>

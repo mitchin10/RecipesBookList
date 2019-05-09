@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @family_recipe.title %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @family_recipe.category %>
+</p>
+
+<p>
+  <strong>Short description:</strong>
+  <%= @family_recipe.short_description %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @family_recipe.country %>
+</p>
+
+<p>
+  <strong>Long description:</strong>
+  <%= @family_recipe.long_description %>
+</p>
+
+<%= link_to 'Edit', edit_family_recipe_path(@family_recipe) %> |
+<%= link_to 'Back', family_recipes_path %>
