@@ -4,7 +4,7 @@
 
 <%= form_tag family_recipes_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search], :placeholder => "Enter the dish name here..." %>
-  <%= submit_tag "Enter" %>
+  <%= submit_tag "Enter", :title => nil %>
 <% end %>
 
 <table>
@@ -24,7 +24,7 @@
     <% @family_recipes.each do |family_recipe| %>
       <tr>
         <td><%= family_recipe.title %></td>
-        <td><%= family_recipe.user.user_name %></td>
+        <td><%= family_recipe.user.name %></td>
         <td><%= family_recipe.category %></td>
         <td><%= family_recipe.short_description %></td>
         <td><%= family_recipe.country %></td>

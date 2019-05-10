@@ -5,7 +5,11 @@ class FamilyRecipesController < ApplicationController
   # GET /family_recipes
   # GET /family_recipes.json
   def index
-    @family_recipes = current_user.family_recipes.sorted
+    if params[:search]
+        @family_recipes = current_user.family_recipes.search(params[:search]).sorted
+    else
+        @family_recipes = current_user.family_recipes.sorted
+    end
   end
 
   # GET /family_recipes/1
