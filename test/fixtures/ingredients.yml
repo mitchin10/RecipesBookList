@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ingredient: MyString
+  done: false
+  family_recipe: one
+
+two:
+  ingredient: MyString
+  done: false
+  family_recipe: two

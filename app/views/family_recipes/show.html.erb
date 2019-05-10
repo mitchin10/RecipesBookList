@@ -25,5 +25,14 @@
   <%= @family_recipe.long_description %>
 </p>
 
+<div class="">
+  <% @family_recipe.ingredients.each do |i| %>
+    <ul>
+      <li><%= i.ingredient %></li>
+      <li><%= i.done %></li>
+    </ul>
+  <% end %>
+</div>
+
 <%= link_to 'Edit', edit_family_recipe_path(@family_recipe) %> |
 <%= link_to 'Back', family_recipes_path %>

@@ -1,6 +1,8 @@
 class FamilyRecipe < ApplicationRecord
 
   belongs_to :user
+  has_many :ingredients, inverse_of: :family_recipe, dependent: :destroy
+  accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
 
   scope :sorted,        -> { order(:category => "ASC") }
 

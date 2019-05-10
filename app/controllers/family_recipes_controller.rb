@@ -74,6 +74,6 @@ class FamilyRecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def family_recipe_params
-      params.require(:family_recipe).permit(:title, :category, :short_description, :country, :long_description)
+      params.require(:family_recipe).permit(:title, :category, :short_description, :country, :long_description, ingredients_attributes: [:id, :ingredient, :done, :_destroy])
     end
 end
