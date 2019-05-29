@@ -38,15 +38,25 @@
 
   <h2>Ingredients</h2>
   <div id="tasks">
-    <%= f.fields_for :ingredients do |i| %>
-      <%= render 'ingredient_fields', :f => i %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'Add ingredient', f, :ingredients %>
+    <div class="ingredient">
+      <%= f.fields_for :ingredients do |i| %>
+        <%= render 'ingredient_fields', :f => i %>
+      <% end %>
+    </div>
+  </div>
+
+  <h2>Cooking Directions</h2>
+  <div id="tasks">
+    <div class="direction">
+      <%= f.fields_for :cooking_directions do |c| %>
+        <%= render 'cooking_direction_fields', :f => c %>
+      <% end %>
     </div>
   </div>
 
   <div class="actions">
+    <%= link_to_add_association 'Add ingredient', f, :ingredients, data: { association_insertion_node: '.ingredient', association_insertion_method: :append } %>
+    <%= link_to_add_association 'Add new cooking direction', f, :cooking_directions, data: { association_insertion_node: '.direction', association_insertion_method: :append } %>
     <%= f.submit %>
   </div>
 <% end %>
