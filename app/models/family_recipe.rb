@@ -7,6 +7,9 @@ class FamilyRecipe < ApplicationRecord
   has_many :cooking_directions, inverse_of: :family_recipe, dependent: :destroy
   accepts_nested_attributes_for :cooking_directions, reject_if: :all_blank, allow_destroy: true
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   scope :sorted,        -> { order(:category => "ASC") }
   scope :published,     -> { where(:publish => true) }
   scope :unpublished,   -> { where(:publish => false) }

@@ -77,7 +77,7 @@ class FamilyRecipesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_family_recipe
-      @family_recipe = FamilyRecipe.find(params[:id])
+      @family_recipe = FamilyRecipe.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
