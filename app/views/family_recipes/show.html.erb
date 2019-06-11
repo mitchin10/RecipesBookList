@@ -1,53 +1,77 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="page-header text-center">
+    <h1><%= @family_recipe.title %></h1>
+  </div>
+  <div class="text-center">
+    <p>
+      <strong>Category:</strong>
+      <%= @family_recipe.category %>
+    </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @family_recipe.title %>
-</p>
+    <p>
+      <%= @family_recipe.short_description %>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @family_recipe.category %>
-</p>
+    <p>
+      <strong>Country:</strong>
+      <%= @family_recipe.country %>
+    </p>
 
-<p>
-  <strong>Short description:</strong>
-  <%= @family_recipe.short_description %>
-</p>
+    <p class="padding-tb">
+      <%= @family_recipe.long_description %>
+    </p>
+  </div>
 
-<p>
-  <strong>Country:</strong>
-  <%= @family_recipe.country %>
-</p>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3>Ingredients</h3>
+        </div>
+      </div>
+      <% if @family_recipe.ingredients.size <= 0 %>
+        <p>...Not yet available...</p>
+      <% else %>
+        <div class="list-ingredients">
+          <% @family_recipe.ingredients.each do |i| %>
+          <div class="checkbox">
+            <%= check_box_tag i.done %>
+          </div>
+          <p class="list-ingredient-item">
+            <%= i.ingredient %>
+          </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Long description:</strong>
-  <%= @family_recipe.long_description %>
-</p>
+    <div class="col-md-6">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3>Cooking Directions</h3>
+        </div>
+      </div>
+      <div class="">
+        <% if @family_recipe.cooking_directions.size <= 0 %>
+          <p>...Not yet available...</p>
+        <% else %>
+          <% @family_recipe.cooking_directions.each do |step| %>
+          <ul class="list-group">
+            <li class="list-group-item">Step <%= step.step %>:</li>
+            <p class="step-direction"><%= step.direction %></li></p><br>
+          </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<h3>Ingredients</h3>
-<div class="">
-  <% @family_recipe.ingredients.each do |i| %>
-    <ul>
-      <li><%= i.ingredient %></li>
-      <li><%= i.done %></li>
-    </ul>
-  <% end %>
-</div>
-
-<h3>Cooking Directions</h3>
-<div class="">
-  <% if @family_recipe.cooking_directions.size <= 0 %>
-    <p>...Not yet available...</p>
-  <% else %>
-    <% @family_recipe.cooking_directions.each do |step| %>
-    <ul>
-      <li><%= step.step %></li>
-      <li><%= step.direction %></li>
-    </ul>
+  <div class="btn-group padding-tb">
+    <% if @family_recipe.user == current_user %>
+      <%= link_to 'Edit', edit_family_recipe_path(@family_recipe), class: 'btn btn-default' %>
+      <%= link_to 'Back', my_recipe_family_recipes_path, class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Back', root_url, class: 'btn btn-default' %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-
-<%= link_to 'Edit', edit_family_recipe_path(@family_recipe) %> |
-<%= link_to 'Back', family_recipes_path %>

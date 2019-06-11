@@ -1,13 +1,21 @@
 <div class="nested-fields">
-  <div class="field">
-    <%= f.label :step %>
-    <%= f.text_field :step %>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="form-group">
+        <%= f.label :step %>
+        <%= f.text_field :step, placeholder: "#", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-xs-8">
+      <%= link_to_remove_association "", f, class: 'glyphicon glyphicon-trash pull-right' %>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :direction %>
-    <%= f.text_field :direction %>
+    <%= f.text_field :direction, class: 'form-control' %>
   </div>
 
-  <%= link_to_remove_association "delete this step", f %>
 </div>

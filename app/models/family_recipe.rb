@@ -8,6 +8,8 @@ class FamilyRecipe < ApplicationRecord
   accepts_nested_attributes_for :cooking_directions, reject_if: :all_blank, allow_destroy: true
 
   scope :sorted,        -> { order(:category => "ASC") }
+  scope :published,     -> { where(:publish => true) }
+  scope :unpublished,   -> { where(:publish => false) }
 
   # Validate methods
   validates_presence_of :title
@@ -18,5 +20,9 @@ class FamilyRecipe < ApplicationRecord
   # Methods
   def self.search(search)
     where("title ILIKE ? OR short_description ILIKE ? OR country ILIKE ? OR category ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+  def self.search_for(search_for)
+    where("title ILIKE ? OR short_description ILIKE ? OR country ILIKE ? OR category ILIKE ?", "%#{search_for}%", "%#{search_for}%", "%#{search_for}%", "%#{search_for}%")
   end
 end

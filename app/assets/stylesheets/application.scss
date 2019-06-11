@@ -1,3 +1,66 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ body {
+   margin: 0px;
+   font-family: 'Open Sans', sans-serif;
+   letter-spacing: 1.5px;
+ }
+
+ .navbar-brand {
+   margin: 0;
+   padding: 0;
+   img {
+     height: 50px;
+     padding: 3px;
+   }
+ }
+
+
+ .padding-tb {
+   padding: 20px 0px;
+ }
+
+ .float-right {
+   float: right;
+ }
+
+ .text-center {
+   text-align: center;
+   letter-spacing: 1.5px;
+   line-height: 2em;
+   font-size: 16px
+ }
+
+ .list-ingredients {
+   padding: 0px 40px;
+   .list-ingredient-item {
+     font-size: 16px;
+     padding-left: 20px;
+     letter-spacing: 1.5px;
+   }
+ }
+
+ .step-direction {
+   padding: 10px 40px;
+   font-size: 16px;
+   letter-spacing: 1.5px;
+ }
+
+ .non-resizable {
+   resize: none;
+ }
+
+ .text-field-width {
+   width: 20px;
+ }
+
+.row a {
+  text-decoration: none;
+  color: #1e0000;
+}
+
+ #tasks {
+   padding: 20px 10px 0px 10px;
+ }

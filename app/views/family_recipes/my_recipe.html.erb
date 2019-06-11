@@ -1,0 +1,47 @@
+<div class="container">
+
+  <div class="page-header text-center">
+    <h1>My Recipes</h1>
+    <p class="padding-tb">Cooking is an art form, a creative thing.</p>
+  </div>
+
+
+  <div class="padding-tb">
+    <div class="row">
+      <div class="col-md-6">
+        <%= render 'family_recipes/my_recipe_simple_search' %>
+      </div>
+      <div class="col-md-6">
+        <%= link_to ' New Dish', new_family_recipe_path, class: 'btn btn-primary glyphicon glyphicon-plus pull-right' %>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Publish</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Country</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @family_recipes.each do |family_recipe| %>
+        <tr>
+          <td><%= link_to family_recipe.title, family_recipe_path(family_recipe) %></td>
+          <td><%= family_recipe.publish %></td>
+          <td><%= family_recipe.user.name %></td>
+          <td><%= family_recipe.category %></td>
+          <td><%= family_recipe.country %></td>
+          <% if family_recipe.user == current_user %>
+            <td><%= link_to "", family_recipe_path(family_recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

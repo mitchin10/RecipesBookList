@@ -1,6 +1,13 @@
-<h1>Editing Family Recipe</h1>
+<div class="container">
+  <div class="page-header">
+    <h1>Editing Family Recipe</h1>
+    <p class="padding-tb">You don't need to be an expert in the kitchen to cook delightful meals for your loved ones!</p>
+  </div>
 
-<%= render 'form', family_recipe: @family_recipe %>
+  <%= render 'form', family_recipe: @family_recipe %>
 
-<%= link_to 'Show', @family_recipe %> |
-<%= link_to 'Back', family_recipes_path %>
+  <div class="btn-group padding-tb">
+    <%= link_to 'Show', @family_recipe, class: 'btn btn-default' %>
+    <%= link_to 'Back', my_recipe_family_recipes_path, class: 'btn btn-default' %>
+  </div>
+</div>

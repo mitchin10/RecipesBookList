@@ -1,13 +1,21 @@
 <div class="nested-fields">
-  <div class="field">
+  <div class="form-group">
     <%= f.label :ingredient %>
-    <%= f.text_field :ingredient %>
+    <%= f.text_field :ingredient, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.check_box :done %>
-    <%= f.label :done %>
+  <div class="row">
+
+    <div class="col-xs-9">
+      <div class="form-group">
+        <%= f.check_box :done %>
+        <%= f.label :done %>
+      </div>
+    </div>
+
+    <div class="col-xs-3">
+      <%= link_to_remove_association "", f, class: 'glyphicon glyphicon-trash pull-right' %>
+    </div>
   </div>
 
-  <%= link_to_remove_association "delete ingredient", f %>
 </div>

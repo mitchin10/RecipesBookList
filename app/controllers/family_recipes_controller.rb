@@ -1,14 +1,22 @@
 class FamilyRecipesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_family_recipe, only: [:show, :edit, :update, :destroy]
 
   # GET /family_recipes
   # GET /family_recipes.json
   def index
-    if params[:search]
-        @family_recipes = current_user.family_recipes.search(params[:search]).sorted
+    if params[:search_for]
+      @family_recipes = FamilyRecipe.search_for(params[:search_for]).published
     else
-        @family_recipes = current_user.family_recipes.sorted
+      @family_recipes = FamilyRecipe.published
+    end
+  end
+
+  def my_recipe
+    if params[:search]
+      @family_recipes = current_user.family_recipes.search(params[:search]).sorted
+    else
+      @family_recipes = current_user.family_recipes.sorted
     end
   end
 
@@ -33,7 +41,7 @@ class FamilyRecipesController < ApplicationController
 
     respond_to do |format|
       if @family_recipe.save
-        format.html { redirect_to family_recipes_path, notice: 'Family recipe was successfully created.' }
+        format.html { redirect_to my_recipe_family_recipes_path, notice: 'Family recipe was successfully created.' }
         format.json { render :show, status: :created, location: @family_recipe }
       else
         format.html { render :new }
@@ -74,6 +82,6 @@ class FamilyRecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def family_recipe_params
-      params.require(:family_recipe).permit(:title, :category, :short_description, :country, :long_description, ingredients_attributes: [:id, :ingredient, :done, :_destroy], cooking_directions_attributes: [:id, :step, :direction, :_destroy])
+      params.require(:family_recipe).permit(:title, :category, :short_description, :country, :publish, :long_description, ingredients_attributes: [:id, :ingredient, :done, :_destroy], cooking_directions_attributes: [:id, :step, :direction, :_destroy])
     end
 end

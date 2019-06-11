@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190525133000) do
+ActiveRecord::Schema.define(version: 20190610202822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20190525133000) do
     t.text     "short_description"
     t.string   "country"
     t.text     "long_description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
+    t.boolean  "publish",           default: false
     t.index ["user_id"], name: "index_family_recipes_on_user_id", using: :btree
   end
 
