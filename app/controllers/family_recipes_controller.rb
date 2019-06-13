@@ -69,7 +69,7 @@ class FamilyRecipesController < ApplicationController
   def destroy
     @family_recipe.destroy
     respond_to do |format|
-      format.html { redirect_to family_recipes_url, notice: 'Family recipe was successfully destroyed.' }
+      format.html { redirect_to my_recipe_family_recipes_url, notice: "'#{@family_recipe.title}' recipe was successfully deleted." }
       format.json { head :no_content }
     end
   end
