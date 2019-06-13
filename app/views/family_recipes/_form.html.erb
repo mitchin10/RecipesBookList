@@ -1,11 +1,11 @@
 <%= form_for(family_recipe) do |f| %>
   <% if family_recipe.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(family_recipe.errors.count, "error") %> prohibited this family_recipe from being saved:</h2>
+      <h3><%= pluralize(family_recipe.errors.count, "error") %> prohibited this recipe from being saved:</h3>
 
-      <ul>
+      <ul class="list-group">
       <% family_recipe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="list-group-item"><%= message %></li>
       <% end %>
       </ul>
     </div>

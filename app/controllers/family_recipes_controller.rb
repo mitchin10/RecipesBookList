@@ -8,7 +8,7 @@ class FamilyRecipesController < ApplicationController
     if params[:search_for]
       @family_recipes = FamilyRecipe.search_for(params[:search_for]).published
     else
-      @family_recipes = FamilyRecipe.published
+      @family_recipes = FamilyRecipe.published.sorted
     end
   end
 
@@ -41,7 +41,7 @@ class FamilyRecipesController < ApplicationController
 
     respond_to do |format|
       if @family_recipe.save
-        format.html { redirect_to my_recipe_family_recipes_path, notice: 'Family recipe was successfully created.' }
+        format.html { redirect_to my_recipe_family_recipes_path, notice: 'New recipe was successfully created.' }
         format.json { render :show, status: :created, location: @family_recipe }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class FamilyRecipesController < ApplicationController
   def update
     respond_to do |format|
       if @family_recipe.update(family_recipe_params)
-        format.html { redirect_to @family_recipe, notice: 'Family recipe was successfully updated.' }
+        format.html { redirect_to @family_recipe, notice: "'#{@family_recipe.title}' recipe was successfully updated." }
         format.json { render :show, status: :ok, location: @family_recipe }
       else
         format.html { render :edit }

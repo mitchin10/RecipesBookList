@@ -1,4 +1,3 @@
-<div class="container">
   <div class="page-header text-center">
     <h1>Family Recipe</h1>
     <p class="padding-tb">Do activities you're passionate about. Food is maybe the only universal thing that really has the power to bring everyone together.</p>
@@ -12,12 +11,12 @@
 
   <div class="row">
     <% @family_recipes.each do |family_recipe| %>
-      <div class="col-sm-6 col-md-4 recipe-box">
+      <div class="col-sm-6 col-md-4">
         <a href="<%= family_recipe_path(family_recipe) %>">
           <h3><strong><%= family_recipe.title %></strong><br></h3>
           <p>Category: <%= family_recipe.category %></p>
           <p><%= family_recipe.country %></p>
-          <p><%= family_recipe.short_description %></p>
+          <p><%= truncate(family_recipe.short_description, length: 35) %></p>
           <p>Published by: <em><%= family_recipe.user.name %></em></p>
         </a>
         <% if family_recipe.user == current_user %>
@@ -26,5 +25,3 @@
       </div>
     <% end %>
   </div>
-
-</div>

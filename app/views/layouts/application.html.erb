@@ -14,12 +14,19 @@
   </head>
 
   <body>
-
     <%= render 'shared/navbar' %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <%= render 'shared/messages' %>
+      <!-- <div class="form-notice">
+      </div> -->
+      <%= yield %>
+    </div>
 
-    <%= yield %>
   </body>
+  <footer>
+    <div class="footer-copyright">
+      <%= render 'shared/footer-copyright' %>
+    </div>
+  </footer>
 </html>
